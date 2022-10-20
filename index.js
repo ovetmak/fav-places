@@ -23,7 +23,7 @@ const reviewsRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo');
  
 // ********** Mongoose connection **********
-const dbUrl =   process.enu.DB_URL || 'mongodb://localhost:27017/placesSpain';
+const dbUrl =   process.env.DB_URL || 'mongodb://localhost:27017/placesSpain';
 
 main().catch(err => console.log(err));
 async function main() {
@@ -172,6 +172,7 @@ app.use((err, req, res, next) => {
 })
 
 // ********** Listening **********
-app.listen(3000, () => {
-    console.log(`Favourite Places app listening on port 3000`)
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Favourite Places app listening on port ${port}`)
 })
